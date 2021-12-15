@@ -1,0 +1,8 @@
+#/bin/sh
+
+#keep only one most recent version
+ls /var/cache/pacman/pkg/ | wc -l
+/usr/bin/paccache -rk 1
+#emove all cached versions of uninstalled packages,
+/usr/bin/paccache -ruk0
+ls /var/cache/pacman/pkg/ | wc -l
