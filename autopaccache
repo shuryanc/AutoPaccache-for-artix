@@ -1,4 +1,4 @@
-#/bin/sh
+#!/bin/bash
 
 versionkept=$(grep -Po '(?<=versionkept=).*' /etc/autopaccache.conf)
 beforeRemoval=$(ls /var/cache/pacman/pkg/ | wc -l)
@@ -9,3 +9,4 @@ beforeRemoval=$(ls /var/cache/pacman/pkg/ | wc -l)
 #Remove all cached versions of uninstalled packages,
 /usr/bin/paccache -ruk0
 afterRemoval=$(ls /var/cache/pacman/pkg/ | wc -l)
+echo "$((beforeRemoval-afterRemoval)) cached packages have been removed.
