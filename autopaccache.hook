@@ -6,4 +6,4 @@ Target = *
 [Action]
 Description = Cleaning pacman cache...
 When = PostTransaction
-Exec = /usr/bin/autopaccache
+Exec = /usr/share/libalpm/scripts/autopaccache
