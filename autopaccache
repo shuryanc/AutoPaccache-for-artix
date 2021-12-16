@@ -1,5 +1,13 @@
 #!/bin/bash
 
+msg() {
+ALL_OFF="\\e[1;0m"
+BOLD="\\e[1;1m"
+GREEN="${BOLD}\\e[1;32m"
+local mesg=$1; shift
+printf "${GREEN}==>${ALL_OFF}${BOLD} ${mesg}${ALL_OFF}" "$@" >&2
+}
+
 versionkept=$(grep -Po '(?<=versionkept=).*' /etc/autopaccache.conf)
 beforeRemoval=$(ls /var/cache/pacman/pkg/ | wc -l)
 
@@ -9,4 +17,4 @@ beforeRemoval=$(ls /var/cache/pacman/pkg/ | wc -l)
 #Remove all cached versions of uninstalled packages,
 /usr/bin/paccache -ruk0
 afterRemoval=$(ls /var/cache/pacman/pkg/ | wc -l)
-echo msg "$((beforeRemoval-afterRemoval)) cached packages have been removed.
+echo msg "$((beforeRemoval-afterRemoval)) cached packages have been removed."
